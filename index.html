@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#07111f">
+  <meta name="description" content="高中物理打点计时器模拟实验：观察纸带、测量位移、计算速度和加速度。">
+  <title>打点计时器模拟实验 · 研究匀变速直线运动</title>
+  <style>
+:root{color-scheme:dark;--bg:#07111f;--surface:#0e2033;--surface-raised:#152b42;--surface-soft:#10263b;--line:#2d4b62;--ink:#ecf7ff;--muted:#a7becd;--blue:#42adf5;--cyan:#62dfdf;--success:#64d8ad;--danger:#ff8994;--warning:#ffd18a;--paper:#e7f3f8;--paper-ink:#16344b;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:radial-gradient(circle at 50% -180px,#1c4767 0,transparent 600px),var(--bg)}button,input,select{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.5}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}[hidden]{display:none!important}
+.site-header{border-bottom:1px solid var(--line);background:#091828d9;backdrop-filter:blur(12px)}.header-inner{max-width:1160px;margin:auto;padding:17px 22px;display:flex;align-items:center;gap:14px}.brand-mark{width:48px;height:48px;flex:none;display:grid;place-items:center;border:1px solid var(--cyan);border-radius:13px;background:#123047;color:var(--cyan);font-size:27px;font-weight:900;letter-spacing:-5px;padding-right:6px}.brand-copy{min-width:0}.eyebrow{margin:0 0 4px;color:var(--cyan);font-size:11px;font-weight:800;letter-spacing:.15em}.brand-copy h1{margin:0;font-size:clamp(18px,3vw,23px);line-height:1.2}.brand-copy>p:last-child{margin:3px 0 0;color:var(--muted);font-size:13px}.text-button{margin-left:auto;flex:none;border:0;background:transparent;color:var(--cyan);padding:12px 2px;font-size:13px;font-weight:700}.text-button:hover{text-decoration:underline}
+.main-shell{max-width:1160px;margin:auto;padding:28px 22px 52px}.site-footer{text-align:center;color:var(--muted);padding:20px;font-size:12px;border-top:1px solid #213a4f}.card{background:linear-gradient(145deg,#10263b,#0c1e30);border:1px solid var(--line);border-radius:18px;box-shadow:0 16px 40px #020a1450;padding:24px;margin-bottom:18px}.card h2{font-size:20px;margin:0 0 12px}.card h3{font-size:16px;margin:0 0 12px}.card p{line-height:1.65}.muted{color:var(--muted)}.small{font-size:13px}.hero{display:grid;grid-template-columns:1.25fr .75fr;gap:26px;align-items:center;min-height:400px}.hero h2{font-size:clamp(30px,5vw,48px);line-height:1.13;letter-spacing:-.03em;margin:0 0 18px}.hero .lead{font-size:16px;color:#c9deeb;max-width:560px}.hero-meta{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 26px}.pill,.status-pill{display:inline-flex;align-items:center;gap:5px;border:1px solid #386079;border-radius:100px;padding:6px 11px;background:#163149;color:#d5f2ff;font-size:12px;font-weight:700}.hero-art{position:relative;min-height:235px;display:grid;place-items:center}.hero-art svg{width:100%;max-width:420px;filter:drop-shadow(0 12px 30px #0008)}
+.button,.segmented button,.point-button{border:1px solid transparent;border-radius:10px;min-height:44px;padding:10px 17px;font-weight:750;transition:background .15s,border-color .15s,transform .15s}.button:hover:not(:disabled),.point-button:hover:not(:disabled){transform:translateY(-1px)}.button.primary{color:#052034;background:linear-gradient(135deg,var(--cyan),var(--blue))}.button.secondary{color:var(--ink);background:#1d5275;border-color:#3f83ae}.button.ghost{color:var(--cyan);background:#102b42;border-color:#396380}.button.danger{color:#fff;background:#9b3d50;border-color:#c75b6a}.button-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:17px}.button-row.center{justify-content:center}.section-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:15px;flex-wrap:wrap}.section-heading p{margin:0 0 12px}.stepper{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px;padding:0;list-style:none}.stepper li{padding:8px 12px;border:1px solid var(--line);border-radius:10px;color:var(--muted);font-size:13px;font-weight:700}.stepper li.active{border-color:var(--cyan);background:#153c50;color:var(--ink)}.stepper li.done{color:var(--success);border-color:#32755e}
+.device-svg{width:100%;height:auto;display:block;border-radius:12px;background:#0a1b2b;border:1px solid var(--line)}.device-label{fill:#cae5f1;font-size:15px;font-weight:700}.device-note{fill:#8fb4c5;font-size:12px}.operation-layout{display:grid;grid-template-columns:1.5fr .8fr;gap:18px;align-items:start}.operation-panel{background:#0a1b2b;border:1px solid var(--line);border-radius:12px;padding:20px}.status-list{display:grid;gap:12px;margin:15px 0}.status-line{padding:12px;border:1px solid var(--line);border-radius:10px;display:flex;gap:10px;color:var(--muted)}.status-line.complete{color:var(--success);border-color:#2d6c5a}.status-number{font-weight:900}
+.tape-card{padding:20px 0 22px;overflow:hidden}.tape-card>.section-heading,.tape-card>.tape-caption,.tape-card>.button-row{padding-left:24px;padding-right:24px}.tape-caption{color:var(--muted);font-size:13px;margin:0 0 14px}.tape-scroll{overflow-x:auto;overflow-y:hidden;max-width:100%;border-top:1px solid #244258;border-bottom:1px solid #244258;background:#0a1929;scrollbar-color:#53768b #0a1929}.tape-svg{display:block;max-width:none;height:auto}.tape-controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.segmented{display:inline-flex;gap:2px;padding:3px;border:1px solid var(--line);border-radius:11px;background:#071828}.segmented button{min-height:38px;color:var(--muted);background:transparent;padding:7px 12px}.segmented button[aria-pressed="true"]{color:#05283d;background:var(--cyan)}.tape-legend{display:flex;gap:17px;flex-wrap:wrap;margin-top:12px;color:var(--muted);font-size:12px}.legend-dot{display:inline-block;width:11px;height:11px;border-radius:50%;vertical-align:-1px;margin-right:5px}.legend-dot.count{background:var(--blue)}.legend-dot.timed{background:#879da8}.tape-help{font-size:12px;color:var(--muted);padding:0 24px;margin:12px 0 0}
+.measure-layout{display:grid;grid-template-columns:1fr 1fr;gap:18px}.point-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:16px 0}.point-button{min-width:0;color:var(--ink);background:#173148;border-color:#365670;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:8px 4px;font-size:14px}.point-button small{font-size:11px;color:var(--muted);white-space:nowrap}.point-button.selected{border-color:var(--cyan);background:#1c5364}.point-button.confirmed small{color:var(--success)}.field-label{display:block;font-weight:700;margin:0 0 7px}.input-row{display:flex;gap:8px;align-items:center}.number-input,select{width:100%;min-width:0;background:#071929;border:1px solid #47718a;border-radius:10px;color:var(--ink);min-height:44px;padding:9px 12px}.number-input::placeholder{color:#829cab}.unit{color:var(--muted);font-weight:700}.feedback{min-height:25px;font-size:13px;margin:9px 0 0}.feedback.good{color:var(--success)}.feedback.bad{color:var(--danger)}.zoom-card{min-width:0;background:#0a1b2b;border:1px solid var(--line);border-radius:12px;padding:14px}.zoom-scroll,.graph-scroll{max-width:100%;overflow-x:auto;scrollbar-color:#53768b #0a1929}.zoom-card svg{display:block;width:500px;max-width:none;height:135px;background:#e8f2f5;border-radius:8px}.zoom-card p{font-size:12px;color:var(--muted);margin:10px 0 0}.record-list{display:grid;gap:6px;margin:14px 0}.record-item{display:flex;justify-content:space-between;gap:8px;padding:9px 11px;border:1px solid var(--line);border-radius:8px;background:#0a1d2e;font-size:13px}.record-item strong{color:var(--cyan)}.record-item .empty{color:var(--muted)}
+.data-table-wrap{overflow:auto;max-width:100%}.data-table{width:100%;border-collapse:collapse;min-width:440px}.data-table th,.data-table td{padding:11px 12px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}.data-table th{color:var(--muted);font-size:12px;font-weight:700}.data-table td{font-variant-numeric:tabular-nums}.data-table .number-input{max-width:160px}.formula{padding:13px 15px;border-left:3px solid var(--cyan);background:#0a1a2b;border-radius:0 8px 8px 0;font-size:14px;line-height:1.6;overflow-wrap:anywhere}.method-panel{margin-top:16px}.graph-svg{display:block;width:580px;max-width:none;height:315px;background:#081b2b;border:1px solid var(--line);border-radius:10px;margin:15px 0}.pair-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.pair-row select{width:auto;min-width:120px}.result-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0}.metric{padding:16px;border:1px solid var(--line);border-radius:12px;background:#0b1d2e}.metric .label{display:block;color:var(--muted);font-size:12px;margin-bottom:6px}.metric strong{font-size:22px;color:var(--cyan);font-variant-numeric:tabular-nums}.note-list{margin:12px 0;padding-left:22px;line-height:1.7}.note-list li{margin:6px 0}.result-badge{display:inline-block;border-radius:100px;padding:5px 11px;background:#184b41;color:var(--success);font-size:12px;font-weight:800}.result-badge.review{background:#5c3d38;color:var(--warning)}.confirm-dialog{width:min(430px,calc(100vw - 32px));border:1px solid #5d7d91;border-radius:16px;padding:25px;background:#10283d;color:var(--ink);box-shadow:0 20px 70px #000b}.confirm-dialog::backdrop{background:#020a15c9}.confirm-dialog h2{margin-top:0}.toast{position:fixed;z-index:5;left:50%;bottom:22px;transform:translateX(-50%);max-width:min(540px,calc(100vw - 24px));padding:12px 18px;background:#214962;border:1px solid var(--cyan);border-radius:10px;box-shadow:0 10px 30px #0008;text-align:center}
+.source-tag{display:inline-block;border:1px solid #4c778f;border-radius:100px;padding:4px 8px;font-size:11px;font-weight:800;white-space:nowrap}.source-tag.student{color:var(--cyan);background:#154355}.source-tag.automatic{color:#afd0ff;background:#203651}.auto-value{color:#c9e8ff;font-variant-numeric:tabular-nums}.graph-svg{cursor:crosshair;touch-action:pan-x}.selected-points{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.selected-point{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;padding:12px;border:1px solid #5d8297;border-radius:10px;background:#102c42;font-size:13px}.selected-point strong{color:var(--cyan)}.selected-point.empty{color:var(--muted);border-style:dashed}.graph-answer{margin-top:12px}
+@media(max-width:760px){.main-shell{padding:20px 14px 40px}.header-inner{padding:14px}.hero,.operation-layout,.measure-layout{grid-template-columns:1fr}.hero{gap:0}.hero-art{min-height:170px;order:-1}.hero-art svg{max-width:290px}.card{padding:19px;margin-bottom:13px}.tape-card{padding:18px 0}.tape-card>.section-heading,.tape-card>.tape-caption,.tape-card>.button-row{padding-left:18px;padding-right:18px}.tape-help{padding:0 18px}.point-grid{gap:5px}.point-button{font-size:13px}.point-button small{font-size:10px}.result-grid,.selected-points{grid-template-columns:1fr}.text-button{font-size:12px}.brand-mark{width:40px;height:40px}.brand-copy>p:last-child{font-size:11px}.button-row .button{flex:1 1 auto}.pair-row select{flex:1}}
+@media(max-width:390px){.point-button{font-size:12px}.point-button small{font-size:9px}.brand-copy h1{font-size:17px}.brand-mark{display:none}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand-mark" aria-hidden="true">···</div>
+      <div class="brand-copy"><p class="eyebrow">PHYSICS · VIRTUAL LAB</p><h1>打点计时器模拟实验</h1><p>研究匀变速直线运动</p></div>
+      <button id="reset-top" class="text-button" type="button" hidden>重新开始实验</button>
+    </div>
+  </header>
+  <main id="app" class="main-shell" aria-live="polite"></main>
+  <footer class="site-footer">纸带数据仅保存在本机浏览器中 · 50 Hz 交流电源模拟</footer>
+  <dialog id="reset-dialog" class="confirm-dialog" aria-labelledby="reset-title">
+    <h2 id="reset-title">重新开始实验？</h2>
+    <p>当前纸带、读数和计算结果将被清除，并生成新一轮实验。</p>
+    <div class="button-row"><button id="cancel-reset" class="button ghost" type="button">继续当前实验</button><button id="confirm-reset" class="button danger" type="button">确认重新开始</button></div>
+  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <script>
+(function(){
+'use strict';
+const CONFIG = Object.freeze({
+  storageKey: 'ticker-tape-lab-v1',
+  frequencyHz: 50,
+  intervalsPerCount: 5,
+  countIntervals: 5,
+  manualVelocityIndices: Object.freeze([1, 4]),
+  accelerationMps2: 2.5,
+  initialVelocityMps: 0.2,
+  initialVelocityVariationMps: 0.02,
+  readingDecimals: 2,
+  readingToleranceCm: 0.05,
+  speedDecimals: 3,
+  speedToleranceMps: 0.02,
+  accelerationDecimals: 3,
+  accelerationToleranceMps2: 0.12,
+  tapePixelsPerCm: 31,
+});
+
+const timedIntervalSeconds = (config = CONFIG) => 1 / config.frequencyHz;
+const countIntervalSeconds = (config = CONFIG) => config.intervalsPerCount / config.frequencyHz;
+const cmToM = cm => cm / 100;
+const mToCm = m => m * 100;
+
+// Display rounding is kept separate from the SI calculation model and saved inputs.
+function formatNumber(value) {
+  const fixed = Number(value).toFixed(2);
+  return Number(fixed) === 0 ? '0.00' : fixed;
+}
+
+const round2 = n => Math.round((n + Number.EPSILON) * 100) / 100;
+const validReading = raw => typeof raw === 'string' && /^\d+\.\d{2}$/.test(raw);
+const validAnswer = raw => typeof raw === 'string' && raw.trim() !== '' && Number.isFinite(Number(raw)) && Number(raw) >= 0;
+const validInternalIndex = (index, config) => Number.isInteger(index) && index >= 1 && index < config.countIntervals;
+
+function makeMotion(random = Math.random, config = CONFIG, previousInitialVelocityMps = null) {
+  const draw = Math.min(0.999999, Math.max(0, Number(random())));
+  const choices = Array.from({ length: 5 }, (_, index) => round2(config.initialVelocityMps + (index - 2) * config.initialVelocityVariationMps / 2));
+  const eligible = choices.filter(value => value !== previousInitialVelocityMps);
+  return { initialVelocityMps: eligible[Math.floor(draw * eligible.length)], accelerationMps2: config.accelerationMps2 };
+}
+
+function positionAt(timeS, motion) {
+  return motion.initialVelocityMps * timeS + 0.5 * motion.accelerationMps2 * timeS ** 2;
+}
+
+function makeDots(motion, config = CONFIG) {
+  const last = config.countIntervals * config.intervalsPerCount;
+  return Array.from({ length: last + 1 }, (_, index) => {
+    const timeS = index * timedIntervalSeconds(config);
+    return { index, timeS, positionM: positionAt(timeS, motion), countIndex: index % config.intervalsPerCount === 0 ? index / config.intervalsPerCount : null };
+  });
+}
+
+function createRound(random = Math.random, config = CONFIG, previousInitialVelocityMps = null) {
+  return {
+    version: 2,
+    runId: globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.floor(random() * 1e8)}`,
+    motion: makeMotion(random, config, previousInitialVelocityMps),
+    stage: 'home', phase: 'measure', powerOn: false, released: false,
+    showTimedDots: false, tapeMode: 'cumulative', selectedIndex: 1,
+    readingDrafts: {}, readingCheck: null, readings: { 0: '0.00' },
+    speedDrafts: {}, accelerationMethod: 'difference', graphSelection: [], accelerationDraft: '',
+    submittedAt: null,
+  };
+}
+
+function referenceDistancesCm(round, config = CONFIG) {
+  const dots = makeDots(round.motion, config);
+  return Array.from({ length: config.countIntervals + 1 }, (_, i) => mToCm(dots[i * config.intervalsPerCount].positionM));
+}
+
+function allReadingsComplete(round, config = CONFIG) {
+  return Array.from({ length: config.countIntervals + 1 }, (_, i) => validReading(round.readings[i])).every(Boolean);
+}
+
+function checkReading(raw, index, round, config = CONFIG) {
+  if (!Number.isInteger(index) || index < 1 || index > config.countIntervals) return { ok: false, reason: '请选择有效的计数点。' };
+  if (!validReading(raw) || Number(raw) < 0 || Number(raw) > referenceDistancesCm(round, config).at(-1) + 10) {
+    return { ok: false, reason: '请输入非负的厘米读数，保留两位小数。' };
+  }
+  const expected = referenceDistancesCm(round, config)[index];
+  if (Math.abs(Number(raw) - expected) > config.readingToleranceCm + 1e-9) {
+    return { ok: false, reason: '读数不在合理范围内，请重新观察纸带和刻度。' };
+  }
+  return { ok: true, reason: '读数已通过检查，请确认保存。' };
+}
+
+function derive(round, config = CONFIG) {
+  if (!allReadingsComplete(round, config)) return null;
+  const distancesCm = Array.from({ length: config.countIntervals + 1 }, (_, i) => Number(round.readings[i]));
+  const displacementsCm = distancesCm.slice(1).map((x, i) => round2(x - distancesCm[i]));
+  const T = countIntervalSeconds(config);
+  const velocitiesMps = Array.from({ length: config.countIntervals - 1 }, (_, j) => {
+    const i = j + 1;
+    return cmToM(distancesCm[i + 1] - distancesCm[i - 1]) / (2 * T);
+  });
+  // Five equal intervals: pair displacements two intervals apart.
+  // Each difference equals 2 a T², so the three pairs sum to 6 a T².
+  const differenceAccelerationMps2 = config.countIntervals === 5
+    ? cmToM((displacementsCm[2] - displacementsCm[0]) + (displacementsCm[3] - displacementsCm[1]) + (displacementsCm[4] - displacementsCm[2])) / (6 * T * T)
+    : null;
+  return { distancesCm, displacementsCm, velocitiesMps, differenceAccelerationMps2 };
+}
+
+function graphAcceleration(data, pair, config = CONFIG) {
+  if (!data || !Array.isArray(pair) || pair.length !== 2) return null;
+  const [first, second] = pair.map(Number);
+  if (!validInternalIndex(first, config) || !validInternalIndex(second, config) || first === second) return null;
+  return (data.velocitiesMps[second - 1] - data.velocitiesMps[first - 1]) / ((second - first) * countIntervalSeconds(config));
+}
+
+function manualVelocitiesComplete(round, config = CONFIG) {
+  return config.manualVelocityIndices.every(index => validInternalIndex(index, config) && validAnswer(round.speedDrafts[index]));
+}
+
+function analysisVelocities(round, data = derive(round), config = CONFIG) {
+  if (!data || !manualVelocitiesComplete(round, config)) return null;
+  return data.velocitiesMps.map((reference, j) => {
+    const index = j + 1;
+    return config.manualVelocityIndices.includes(index) ? Number(round.speedDrafts[index]) : reference;
+  });
+}
+
+function selectedGraphAcceleration(round, data = derive(round), config = CONFIG) {
+  const velocitiesMps = analysisVelocities(round, data, config);
+  return velocitiesMps ? graphAcceleration({ velocitiesMps }, round.graphSelection, config) : null;
+}
+
+function invalidateCalculations(next) {
+  next.phase = 'measure';
+  next.stage = 'analysis';
+  next.tapeMode = 'cumulative';
+  next.speedDrafts = {};
+  next.graphSelection = [];
+  next.accelerationDraft = '';
+  next.submittedAt = null;
+}
+
+function reduceRound(round, action, config = CONFIG) {
+  const next = structuredClone(round);
+  const needTape = () => { if (!next.released || next.stage === 'home' || next.stage === 'setup') throw new Error('请先接通电源并释放小车，生成纸带。'); };
+  switch (action.type) {
+    case 'START':
+      if (next.stage !== 'home') throw new Error('实验已经开始。');
+      next.stage = 'setup'; break;
+    case 'POWER_ON':
+      if (next.stage !== 'setup') throw new Error('请先开始实验。');
+      next.powerOn = true; break;
+    case 'RELEASE':
+      if (next.stage !== 'setup' || !next.powerOn) throw new Error('请先接通打点计时器电源。');
+      next.released = true; next.stage = 'analysis'; break;
+    case 'TOGGLE_TIMED':
+      needTape(); next.showTimedDots = !next.showTimedDots; break;
+    case 'SELECT_POINT':
+      needTape();
+      if (!Number.isInteger(action.index) || action.index < 1 || action.index > config.countIntervals) throw new Error('计数点无效。');
+      next.selectedIndex = action.index;
+      next.readingDrafts[action.index] ??= next.readings[action.index] ?? '';
+      next.readingCheck = null; break;
+    case 'DRAFT_READING':
+      needTape(); next.readingDrafts[next.selectedIndex] = String(action.raw); next.readingCheck = null; break;
+    case 'CHECK_READING': {
+      needTape();
+      const raw = next.readingDrafts[next.selectedIndex] ?? '';
+      const result = checkReading(raw, next.selectedIndex, next, config);
+      next.readingCheck = { index: next.selectedIndex, raw, ...result };
+      break;
+    }
+    case 'SAVE_READING': {
+      needTape();
+      const checked = next.readingCheck;
+      if (!checked?.ok || checked.index !== next.selectedIndex || checked.raw !== next.readingDrafts[next.selectedIndex]) throw new Error('请先检查当前读数。');
+      const old = next.readings[next.selectedIndex];
+      next.readings[next.selectedIndex] = checked.raw;
+      next.readingCheck = null;
+      if (old !== checked.raw) invalidateCalculations(next);
+      break;
+    }
+    case 'CLEAR_READING':
+      needTape();
+      if (!next.readings[action.index] || action.index === 0) throw new Error('该点没有可清除的读数。');
+      delete next.readings[action.index];
+      delete next.readingDrafts[action.index];
+      next.readingCheck = null;
+      invalidateCalculations(next); break;
+    case 'CALCULATE_DISPLACEMENTS':
+      needTape();
+      if (!allReadingsComplete(next, config)) throw new Error('请先完成全部累计距离读数。');
+      next.tapeMode = 'displacement'; next.phase = 'speed'; break;
+    case 'RETURN_MEASURE':
+      needTape(); next.phase = 'measure'; next.tapeMode = 'cumulative'; break;
+    case 'RETURN_SPEED':
+      needTape();
+      if (!derive(next, config)) throw new Error('累计距离数据不足。');
+      next.phase = 'speed'; next.graphSelection = []; next.accelerationDraft = ''; break;
+    case 'SET_TAPE_MODE':
+      needTape();
+      if (!['cumulative', 'displacement'].includes(action.mode)) throw new Error('纸带模式无效。');
+      if (action.mode === 'displacement' && !allReadingsComplete(next, config)) throw new Error('请先完成全部累计距离读数。');
+      next.tapeMode = action.mode; break;
+    case 'DRAFT_SPEED':
+      needTape();
+      if (!config.manualVelocityIndices.includes(action.index)) throw new Error('该计数点的速度由系统计算。');
+      next.speedDrafts[action.index] = String(action.raw);
+      next.graphSelection = [];
+      next.accelerationDraft = '';
+      if (next.phase === 'acceleration') next.phase = 'speed';
+      break;
+    case 'TO_ACCELERATION':
+      needTape();
+      if (!derive(next, config)) throw new Error('累计距离数据不足。');
+      if (!manualVelocitiesComplete(next, config)) throw new Error('请先填写指定的两个计数点速度。');
+      next.phase = 'acceleration'; break;
+    case 'SET_METHOD':
+      needTape();
+      if (!['difference', 'graph'].includes(action.method)) throw new Error('计算方法无效。');
+      next.accelerationMethod = action.method; next.accelerationDraft = ''; break;
+    case 'SELECT_GRAPH_POINT':
+      needTape();
+      if (next.phase !== 'acceleration' || next.accelerationMethod !== 'graph' || !analysisVelocities(next, derive(next, config), config)) throw new Error('请先完成两个指定速度的计算。');
+      if (!validInternalIndex(action.index, config)) throw new Error('请选择图像上的内部计数点。');
+      if (next.graphSelection.length === 1 && next.graphSelection[0] === action.index) throw new Error('第二个点须位于不同的时刻。');
+      next.graphSelection = next.graphSelection.length === 1 ? [next.graphSelection[0], action.index] : [action.index];
+      break;
+    case 'RESET_GRAPH_POINTS':
+      needTape(); next.graphSelection = []; break;
+    case 'DRAFT_ACCELERATION':
+      needTape(); next.accelerationDraft = String(action.raw); break;
+    case 'SUBMIT':
+      needTape();
+      if (next.phase !== 'acceleration' || !derive(next, config)) throw new Error('请先完成测量和速度计算。');
+      if (!manualVelocitiesComplete(next, config)) throw new Error('请先填写指定的两个计数点速度。');
+      if (next.accelerationMethod === 'difference' && !validAnswer(next.accelerationDraft)) throw new Error('请填写逐差法加速度计算结果。');
+      if (next.accelerationMethod === 'graph' && selectedGraphAcceleration(next, derive(next, config), config) === null) throw new Error('请在图像上选择两个不同时刻的数据点。');
+      next.stage = 'results'; next.submittedAt = new Date().toISOString(); break;
+    case 'EDIT_RESULTS':
+      if (next.stage !== 'results') throw new Error('结果尚未提交。');
+      next.stage = 'analysis'; next.phase = 'acceleration'; next.submittedAt = null; break;
+    default: throw new Error('未知操作。');
+  }
+  return next;
+}
+
+function resultsFor(round, config = CONFIG) {
+  if (round.stage !== 'results') return null;
+  const data = derive(round, config);
+  if (!data) return null;
+  const referenceCm = referenceDistancesCm(round, config);
+  const measuredAcceleration = round.accelerationMethod === 'difference' ? data.differenceAccelerationMps2 : graphAcceleration(data, round.graphSelection, config);
+  const studentAcceleration = round.accelerationMethod === 'difference' ? Number(round.accelerationDraft) : selectedGraphAcceleration(round, data, config);
+  if (measuredAcceleration === null || studentAcceleration === null) return null;
+  return {
+    data, referenceCm, measuredAcceleration, studentAcceleration,
+    analysisVelocitiesMps: analysisVelocities(round, data, config),
+    measurementErrorsCm: data.distancesCm.map((value, i) => value - referenceCm[i]),
+    velocityErrorsMps: data.velocitiesMps.map((value, i) => config.manualVelocityIndices.includes(i + 1) ? Number(round.speedDrafts[i + 1]) - value : null),
+    processingErrorMps2: studentAcceleration - measuredAcceleration,
+    measurementEffectMps2: measuredAcceleration - round.motion.accelerationMps2,
+    totalErrorMps2: studentAcceleration - round.motion.accelerationMps2,
+  };
+}
+
+function restoreRound(raw, config = CONFIG) {
+  if (!raw) return null;
+  try {
+    const value = JSON.parse(raw);
+    if (![1,2].includes(value.version) || !['home','setup','analysis','results'].includes(value.stage) ||
+      !['measure','speed','acceleration'].includes(value.phase) ||
+      !['cumulative','displacement'].includes(value.tapeMode) ||
+      !Number.isFinite(value.motion?.initialVelocityMps) || !Number.isFinite(value.motion?.accelerationMps2) ||
+      value.motion.initialVelocityMps < 0 || value.motion.accelerationMps2 !== config.accelerationMps2 ||
+      !value.readings || value.readings[0] !== '0.00' || !value.readingDrafts || !value.speedDrafts ||
+      !Number.isInteger(value.selectedIndex) || value.selectedIndex < 1 || value.selectedIndex > config.countIntervals ||
+      typeof value.powerOn !== 'boolean' || typeof value.released !== 'boolean' || typeof value.showTimedDots !== 'boolean' ||
+      (value.released && !value.powerOn) || (value.stage === 'results' && !allReadingsComplete(value, config))) return null;
+    if (value.version === 1) {
+      value.version = 2;
+      value.speedDrafts = Object.fromEntries(config.manualVelocityIndices.filter(index => value.speedDrafts[index] !== undefined).map(index => [index, value.speedDrafts[index]]));
+      value.graphSelection = [];
+      if (value.stage === 'results' && value.accelerationMethod === 'graph') {
+        value.stage = 'analysis';
+        value.phase = 'acceleration';
+        value.submittedAt = null;
+      }
+      delete value.graphPair;
+    }
+    if (!Array.isArray(value.graphSelection) || value.graphSelection.length > 2 || !value.graphSelection.every(index => validInternalIndex(index, config)) ||
+      (value.graphSelection.length === 2 && value.graphSelection[0] === value.graphSelection[1])) return null;
+    return value;
+  } catch { return null; }
+}
+
+const app = document.querySelector('#app');
+const resetTop = document.querySelector('#reset-top');
+const resetDialog = document.querySelector('#reset-dialog');
+const toast = document.querySelector('#toast');
+let round = restoreRound(localStorage.getItem(CONFIG.storageKey)) ?? createRound();
+let toastTimer;
+
+const e = value => String(value ?? '').replace(/[&<>"']/g, char => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' })[char]);
+const n = (value, digits = 2) => {
+  if (digits === 2) return formatNumber(value);
+  const fixed = Number(value).toFixed(digits);
+  return Number(fixed) === 0 ? (0).toFixed(digits) : fixed;
+};
+const persist = () => localStorage.setItem(CONFIG.storageKey, JSON.stringify(round));
+const disabled = condition => condition ? 'disabled' : '';
+const button = (label, action, style = 'primary', extra = '') => `<button class="button ${style}" type="button" data-action="${action}" ${extra}>${label}</button>`;
+
+function flash(message) {
+  toast.textContent = message;
+  toast.hidden = false;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { toast.hidden = true; }, 3600);
+}
+
+function dispatch(action, scrollToSelected = false) {
+  try {
+    round = reduceRound(round, action);
+    persist();
+    render(scrollToSelected);
+  } catch (error) { render(); flash(error.message); }
+}
+
+function heroArt() {
+  return `<svg viewBox="0 0 420 250" role="img" aria-label="加速运动的纸带示意"><defs><linearGradient id="paper" x2="1" y2="1"><stop stop-color="#eef9fc"/><stop offset="1" stop-color="#c9e3ea"/></linearGradient></defs><rect x="14" y="78" width="392" height="94" rx="8" fill="url(#paper)"/><path d="M30 126H390" stroke="#7b9ba9" stroke-width="2"/><g fill="#238ed8"><circle cx="41" cy="126" r="6"/><circle cx="77" cy="126" r="6"/><circle cx="126" cy="126" r="6"/><circle cx="190" cy="126" r="6"/><circle cx="270" cy="126" r="6"/><circle cx="368" cy="126" r="6"/></g><path d="M40 196Q40 208 50 208H358Q368 208 368 196" fill="none" stroke="#62dfdf" stroke-width="3"/><text x="204" y="231" text-anchor="middle" fill="#62dfdf" font-size="16" font-weight="700">距离增大 · 时间相等</text><text x="41" y="65" fill="#bde6f4" font-size="16">0</text><text x="365" y="65" fill="#bde6f4" font-size="16">5</text></svg>`;
+}
+
+function renderHome() {
+  return `<section class="card hero"><div><p class="eyebrow">EXPERIMENT 01 / KINEMATICS</p><h2>从纸带上的点，<br>读出运动的规律。</h2><p class="lead">接通电源、释放小车，测量计数点的累计距离，再由纸带求位移、瞬时速度和加速度。</p><div class="hero-meta"><span class="pill">50 Hz 打点计时器</span><span class="pill">手机端可操作</span><span class="pill">本地保存进度</span></div>${button('开始实验 →','start')}</div><div class="hero-art">${heroArt()}</div></section><section class="card"><h2>操作顺序</h2><p class="muted">接通电源 → 释放小车 → 观察并测量纸带 → 处理数据 → 提交结果。</p></section>`;
+}
+
+function deviceSvg() {
+  return `<svg class="device-svg" viewBox="0 0 750 260" role="img" aria-label="打点计时器、纸带、小车、长木板和滑轮装置图"><rect x="34" y="164" width="612" height="20" rx="5" fill="#537285"/><rect x="45" y="184" width="13" height="45" fill="#365c75"/><rect x="615" y="184" width="13" height="45" fill="#365c75"/><rect x="88" y="110" width="95" height="55" rx="8" fill="#254d69" stroke="#6fb9db" stroke-width="3"/><rect x="105" y="95" width="61" height="24" rx="4" fill="#366b8b"/><circle cx="138" cy="138" r="6" fill="${round.powerOn ? '#62dfdf' : '#667d8a'}"/><rect x="180" y="144" width="330" height="8" fill="#dfedf1"/><path d="M397 117H554L573 151H379Z" fill="#3883ad" stroke="#83dafa" stroke-width="3"/><circle cx="415" cy="156" r="14" fill="#0b2436" stroke="#9ab9c5" stroke-width="5"/><circle cx="537" cy="156" r="14" fill="#0b2436" stroke="#9ab9c5" stroke-width="5"/><circle cx="668" cy="172" r="21" fill="#173b53" stroke="#8fb3c6" stroke-width="4"/><path d="M573 136H668Q686 136 686 154V219" fill="none" stroke="#b8d8e5" stroke-width="3"/><rect x="671" y="219" width="31" height="24" rx="3" fill="#428db7"/><text x="80" y="52" class="device-label">打点计时器</text><path d="M127 60V92" stroke="#7dcce5"/><text x="309" y="71" class="device-label">纸带</text><path d="M335 79V139" stroke="#7dcce5"/><text x="448" y="73" class="device-label">小车</text><path d="M465 81V108" stroke="#7dcce5"/><text x="595" y="66" class="device-label">滑轮</text><path d="M619 75L660 145" stroke="#7dcce5"/><text x="278" y="212" class="device-note">长木板</text></svg>`;
+}
+
+function renderSetup() {
+  return `<ol class="stepper"><li class="done">01 开始实验</li><li class="active">02 装置操作</li><li>03 纸带分析</li><li>04 结果反馈</li></ol><section class="card"><div class="section-heading"><div><p class="eyebrow">SETUP / 实验装置</p><h2>先通电，再释放小车</h2><p class="muted">装置示意图用于认识部件；释放后立即生成纸带。</p></div><span class="status-pill">${round.powerOn ? '电源已接通' : '等待接通电源'}</span></div><div class="operation-layout"><div>${deviceSvg()}</div><div class="operation-panel"><h3>操作步骤</h3><div class="status-list"><div class="status-line ${round.powerOn ? 'complete' : ''}"><span class="status-number">01</span><span>${round.powerOn ? '电源已接通' : '接通打点计时器电源'}</span></div><div class="status-line"><span class="status-number">02</span><span>释放小车并生成纸带</span></div></div><div class="button-row">${button(round.powerOn ? '电源已接通' : '接通电源','power','secondary',disabled(round.powerOn))}${button('释放小车 →','release','primary',disabled(!round.powerOn))}</div><p class="small muted">50 Hz：每个计时点间隔 ${n(timedIntervalSeconds())} s；每隔 ${CONFIG.intervalsPerCount} 个计时点间隔选取一个计数点。</p></div></div></section>`;
+}
+
+function bracket(x1, x2, y, label, color, id) {
+  return `<g data-bracket="${id}"><path d="M${n(x1,1)} ${y-15} Q${n(x1,1)} ${y} ${n(x1+10,1)} ${y} H${n(x2-10,1)} Q${n(x2,1)} ${y} ${n(x2,1)} ${y-15}" fill="none" stroke="${color}" stroke-width="2.5"/><text x="${n(x2+10,1)}" y="${y+4}" fill="${color}" font-size="15" font-weight="750">${e(label)}</text></g>`;
+}
+
+function renderTape() {
+  const dots = makeDots(round.motion);
+  const refs = referenceDistancesCm(round);
+  const data = derive(round);
+  const scale = CONFIG.tapePixelsPerCm;
+  const left = 74;
+  const x = cm => left + cm * scale;
+  const maxCm = Math.ceil(refs.at(-1) + 1);
+  const width = Math.ceil(x(maxCm) + 170);
+  const cumulative = round.tapeMode === 'cumulative';
+  const height = cumulative ? 475 : 300;
+  const ticks = Array.from({ length: maxCm + 1 }, (_, cm) => `<line x1="${x(cm)}" y1="160" x2="${x(cm)}" y2="${cm % 5 === 0 ? 184 : 174}" stroke="#526e7e" stroke-width="${cm % 5 === 0 ? 2 : 1}"/>${cm % 2 === 0 ? `<text x="${x(cm)}" y="199" text-anchor="middle" fill="#405b6d" font-size="12">${cm}</text>` : ''}`).join('');
+  const timedDots = round.showTimedDots ? dots.filter(dot => dot.countIndex === null).map(dot => `<circle cx="${n(x(mToCm(dot.positionM)),2)}" cy="116" r="3" fill="#879da8"/>`).join('') : '';
+  const countDots = dots.filter(dot => dot.countIndex !== null).map(dot => {
+    const index = dot.countIndex;
+    const cx = x(mToCm(dot.positionM));
+    return `<g class="count-point" data-action="select-point" data-index="${index}" role="button" tabindex="0" aria-label="计数点 ${index}">${index === round.selectedIndex && round.stage === 'analysis' ? `<circle cx="${n(cx,2)}" cy="116" r="14" fill="none" stroke="#0d81c5" stroke-width="2"/>` : ''}<circle cx="${n(cx,2)}" cy="116" r="7" fill="#168dcd" stroke="#e6faff" stroke-width="2"/><circle cx="${n(cx,2)}" cy="116" r="17" fill="transparent"/><text x="${n(cx,2)}" y="71" text-anchor="middle" fill="#d9f4ff" font-size="16" font-weight="800">${index}</text></g>`;
+  }).join('');
+  let marks = '';
+  if (cumulative) {
+    for (let i = 1; i <= CONFIG.countIntervals; i++) {
+      if (round.readings[i]) marks += bracket(x(0), x(refs[i]), 224 + (i - 1) * 43, `x${i}  ${round.readings[i]} cm`, '#38b6dd', `x${i}`);
+    }
+    if (!round.readings[round.selectedIndex]) marks += `<g><path d="M${x(0)} 447 H${n(x(refs[round.selectedIndex]),1)}" stroke="#d39438" stroke-width="2" stroke-dasharray="6 6"/><text x="${n(x(refs[round.selectedIndex])+9,1)}" y="452" fill="#a16416" font-size="13">当前测量：0 → ${round.selectedIndex}</text></g>`;
+  } else if (data) {
+    for (let i = 1; i <= CONFIG.countIntervals; i++) marks += bracket(x(refs[i-1]), x(refs[i]), 227 + (i % 2) * 37, `s${i}  ${n(data.displacementsCm[i-1])} cm`, '#1685b1', `s${i}`);
+  }
+  return `<section class="card tape-card"><div class="section-heading"><div><p class="eyebrow">TICKER TAPE / 实验纸带</p><h2>${cumulative ? '累计距离' : '相邻计数点位移'}</h2></div><div class="tape-controls">${allReadingsComplete(round) && round.phase !== 'measure' ? `<div class="segmented" role="group" aria-label="纸带显示模式"><button type="button" data-action="mode-cumulative" aria-pressed="${cumulative}">累计距离</button><button type="button" data-action="mode-displacement" aria-pressed="${!cumulative}">相邻位移</button></div>` : ''}${button(round.showTimedDots ? '隐藏计时点' : '显示隐藏计时点','toggle-timed','ghost')}</div></div><p class="tape-caption">每隔 ${CONFIG.intervalsPerCount} 个计时点间隔选取一个计数点，计数点间隔 ΔT = ${n(countIntervalSeconds())} s。左右滑动纸带查看全段。</p><div class="tape-scroll"><svg class="tape-svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img" aria-label="带有真实运动点位、厘米刻度和${cumulative ? '累计距离' : '相邻位移'}括号的纸带"><rect x="35" y="87" width="${width-70}" height="118" rx="8" fill="#e7f3f8"/><rect x="35" y="87" width="${width-70}" height="62" rx="8" fill="#f5fbfd"/><line x1="35" y1="151" x2="${width-35}" y2="151" stroke="#b0cbd4"/><text x="${left}" y="38" fill="#d9f4ff" font-size="15" font-weight="800">起始计数点 0</text><text x="${width-115}" y="199" fill="#405b6d" font-size="12">刻度 / cm</text>${ticks}${timedDots}${countDots}${marks}</svg></div><div class="tape-legend"><span><i class="legend-dot count"></i>计数点</span><span><i class="legend-dot timed"></i>${round.showTimedDots ? '中间计时点（已显示）' : '中间计时点（已隐藏）'}</span></div><p class="tape-help">括号的两端对准纸带上的计数点；切换计时点显示不会改变点位和数据。</p></section>`;
+}
+
+function renderZoom(index) {
+  const exact = referenceDistancesCm(round)[index];
+  const start = Math.floor((exact - 0.6) * 10) / 10;
+  const sx = cm => 55 + (cm - start) * 325;
+  const ticks = Array.from({ length: 13 }, (_, j) => {
+    const cm = Math.round((start + j * 0.1) * 10) / 10;
+    const major = j % 2 === 0;
+    return `<line x1="${n(sx(cm),1)}" y1="67" x2="${n(sx(cm),1)}" y2="${major ? 95 : 84}" stroke="#476678" stroke-width="${major ? 2 : 1}"/>${major ? `<text x="${n(sx(cm),1)}" y="115" text-anchor="middle" fill="#23435a" font-size="12">${n(cm,1)}</text>` : ''}`;
+  }).join('');
+  return `<div class="zoom-card"><h3>计数点 ${index} · 局部放大刻度</h3><div class="zoom-scroll" data-dot-x="${n(sx(exact),2)}"><svg viewBox="0 0 500 135" role="img" aria-label="计数点 ${index} 附近的放大厘米刻度尺"><rect width="500" height="135" rx="8" fill="#edf6f9"/><line x1="35" y1="67" x2="465" y2="67" stroke="#476678" stroke-width="2"/>${ticks}<circle cx="${n(sx(exact),2)}" cy="39" r="7" fill="#168dcd"/><path d="M${n(sx(exact),2)} 47V66" stroke="#168dcd" stroke-width="2"/></svg></div><p>蓝点向下对准厘米刻度，按 0.01 cm 估读；窄屏可左右滑动刻度。</p></div>`;
+}
+
+function renderMeasure() {
+  const i = round.selectedIndex;
+  const check = round.readingCheck;
+  const count = Object.keys(round.readings).length - 1;
+  const points = Array.from({ length: CONFIG.countIntervals }, (_, j) => {
+    const index = j + 1;
+    const saved = !!round.readings[index];
+    return `<button type="button" class="point-button ${i === index ? 'selected' : ''} ${saved ? 'confirmed' : ''}" data-action="select-point" data-index="${index}" aria-pressed="${i === index}"><span>计数点 ${index}</span><small>${saved ? '已确认' : index === i && round.readingDrafts[index] ? '待确认' : '未填写'}</small></button>`;
+  }).join('');
+  const feedback = check && check.index === i ? `<p class="feedback ${check.ok ? 'good' : 'bad'}" id="reading-feedback">${e(check.reason)}</p>` : `<p class="feedback" id="reading-feedback">${round.readings[i] ? '已确认的读数可修改，重新保存后下游计算会更新。' : '选择计数点，对照纸带和放大刻度输入读数。'}</p>`;
+  return `<section class="card" id="measure-section"><div class="section-heading"><div><p class="eyebrow">01 / MEASUREMENT</p><h2>测量累计距离</h2><p class="muted small">从起始点 0 测到所选计数点。0 点为 0.00 cm，已固定记录。已确认 ${count}/${CONFIG.countIntervals} 个。</p></div><span class="status-pill">${count === CONFIG.countIntervals ? '测量完成' : '测量进行中'}</span></div><div class="point-grid">${points}</div><div class="measure-layout"><div><label class="field-label" for="reading-input">计数点 ${i} 到 0 点的累计距离</label><div class="input-row"><input id="reading-input" class="number-input" type="text" inputmode="decimal" autocomplete="off" placeholder="输入读数，保留两位小数" value="${e(round.readingDrafts[i] ?? round.readings[i] ?? '')}" aria-describedby="reading-feedback"><span class="unit">cm</span></div>${feedback}<div class="button-row">${button('检查读数','check-reading','secondary')}${button('确认保存','save-reading','primary',disabled(!check?.ok || check.index !== i))}${round.readings[i] ? button('清除此读数','clear-reading','ghost') : ''}</div><div class="record-list">${Array.from({ length: CONFIG.countIntervals }, (_, j) => `<div class="record-item"><span>0 → ${j+1}</span><span class="${round.readings[j+1] ? '' : 'empty'}">${round.readings[j+1] ? `<strong>${e(round.readings[j+1])} cm · 已确认</strong>` : '未填写'}</span></div>`).join('')}</div>${count === CONFIG.countIntervals ? `<div class="button-row">${button('计算相邻点位移 →','calculate-displacements')}</div>` : ''}</div>${renderZoom(i)}</div></section>`;
+}
+
+function renderSpeed() {
+  const data = derive(round);
+  if (!data) return `<section class="card"><p>请先完成累计距离测量。</p></section>`;
+  const rows = data.velocitiesMps.map((value, j) => {
+    const i = j + 1;
+    const manual = CONFIG.manualVelocityIndices.includes(i);
+    return `<tr><td>计数点 ${i}</td><td>${n(i * countIntervalSeconds())} s</td><td>x${i-1} 与 x${i+1}</td><td><span class="source-tag ${manual ? 'student' : 'automatic'}">${manual ? '学生填写' : '系统计算'}</span></td><td>${manual ? `<input class="number-input" data-speed-index="${i}" type="text" inputmode="decimal" autocomplete="off" placeholder="自行计算" value="${e(round.speedDrafts[i] ?? '')}" aria-label="计数点 ${i} 的瞬时速度，米每秒">` : `<strong class="auto-value">${formatNumber(value)} m/s</strong>`}</td></tr>`;
+  }).join('');
+  return `<section class="card"><p class="eyebrow">02 / VELOCITY</p><h2>计算两个指定点的瞬时速度</h2><p class="muted">只需手动计算计数点 ${CONFIG.manualVelocityIndices.join(' 和 ')}；其余内部计数点速度由本轮已确认的纸带读数自动计算。端点 0 和 ${CONFIG.countIntervals} 不计算速度。</p><p class="formula">v<sub>i</sub> ≈ (x<sub>i+1</sub> − x<sub>i−1</sub>) ÷ (2ΔT)，ΔT = ${n(countIntervalSeconds())} s。纸带读数为 cm，计算速度时先换算为 m。</p><div class="data-table-wrap"><table class="data-table"><thead><tr><th>速度位置</th><th>时刻</th><th>取点</th><th>数据来源</th><th>速度 / m·s⁻¹</th></tr></thead><tbody>${rows}</tbody></table></div><p class="small muted">图像法使用你填写的两个速度和系统计算的其余速度。修改输入后，图像选点与结果会更新。</p><div class="button-row">${button('返回修改累计距离','return-measure','ghost')}${button('进入加速度计算 →','to-acceleration')}</div></section>`;
+}
+
+function renderGraph(data) {
+  const values = analysisVelocities(round, data);
+  if (!values) return '';
+  const ymax = Math.ceil((Math.max(...values) + 0.1) * 10) / 10;
+  const x = i => 70 + (i - 1) * 140;
+  const y = v => 255 - v / ymax * 205;
+  const grid = Array.from({ length: 6 }, (_, j) => {
+    const value = ymax * j / 5;
+    return `<line x1="70" y1="${n(y(value),1)}" x2="505" y2="${n(y(value),1)}" stroke="#31516a" stroke-dasharray="4 5"/><text x="60" y="${n(y(value)+4,1)}" text-anchor="end" fill="#9bbaca" font-size="11">${n(value,2)}</text>`;
+  }).join('');
+  const rawLine = values.map((value,j) => `${x(j+1)},${n(y(value),1)}`).join(' ');
+  const selection = round.graphSelection;
+  const selectedLine = selection.length === 2 ? `<line x1="${x(selection[0])}" y1="${n(y(values[selection[0]-1]),1)}" x2="${x(selection[1])}" y2="${n(y(values[selection[1]-1]),1)}" stroke="#ffcf7b" stroke-width="3"/>` : '';
+  const points = values.map((value, j) => {
+    const index = j + 1;
+    const selectedPosition = selection.indexOf(index);
+    return `<g data-action="graph-point" data-index="${index}" role="button" tabindex="0" aria-label="选择计数点 ${index}，t=${n(index*countIntervalSeconds())}秒，v=${n(value)}米每秒"><circle cx="${x(index)}" cy="${n(y(value),1)}" r="27" fill="transparent"/>${selectedPosition >= 0 ? `<circle cx="${x(index)}" cy="${n(y(value),1)}" r="16" fill="none" stroke="${selectedPosition === 0 ? '#ffcf7b' : '#80e7a7'}" stroke-width="3"/><text x="${x(index)+18}" y="${n(y(value)-17,1)}" fill="${selectedPosition === 0 ? '#ffcf7b' : '#80e7a7'}" font-size="17" font-weight="800">${selectedPosition === 0 ? 'A' : 'B'}</text>` : ''}<circle cx="${x(index)}" cy="${n(y(value),1)}" r="7" fill="${CONFIG.manualVelocityIndices.includes(index) ? '#62dfdf' : '#5aaaff'}" stroke="#082034" stroke-width="2"/><text x="${x(index)}" y="${n(y(value)-13,1)}" text-anchor="middle" fill="#d9f5ff" font-size="13" font-weight="700">${index}</text><text x="${x(index)}" y="280" text-anchor="middle" fill="#a9c7d5" font-size="12">${n(index*countIntervalSeconds())}</text></g>`;
+  }).join('');
+  return `<svg id="velocity-graph" class="graph-svg" data-action="graph-plot" viewBox="0 0 580 315" role="img" aria-label="点击速度时间图像，吸附选择内部计数点"><text x="19" y="22" fill="#d3eaf5" font-size="13">v / (m·s⁻¹)</text><path d="M70 35V255H520" fill="none" stroke="#a9d4e4" stroke-width="2"/>${grid}<polyline points="${rawLine}" fill="none" stroke="#4b829e" stroke-width="2" stroke-dasharray="5 5"/>${selectedLine}${points}<text x="515" y="286" fill="#d3eaf5" font-size="13">t / s</text></svg>`;
+}
+
+function renderAcceleration() {
+  const data = derive(round);
+  if (!data) return `<section class="card"><p>请先完成累计距离测量。</p></section>`;
+  const difference = round.accelerationMethod === 'difference';
+  const values = analysisVelocities(round, data);
+  const selection = round.graphSelection;
+  const selectedPoint = (index, label) => index === undefined ? `<div class="selected-point empty">${label}：等待选点</div>` : `<div class="selected-point"><strong>${label} · 计数点 ${index}</strong><span>t = ${n(index*countIntervalSeconds())} s</span><span>v = ${n(values[index-1])} m/s</span></div>`;
+  const slope = selectedGraphAcceleration(round, data);
+  const graphPanel = `<div class="method-panel"><p class="formula">直接点击图中的原始实验数据点，或点击附近位置自动吸附。折线只连接数据点，并非拟合直线。先选 A，再选不同时刻的 B。</p><div class="graph-scroll">${renderGraph(data)}</div><div class="selected-points">${selectedPoint(selection[0], 'A')}${selectedPoint(selection[1], 'B')}</div>${slope === null ? `<p class="feedback">${selection.length === 1 ? '已选 A，请点击另一个时刻的点。' : '请选择两个不同时刻的点。'}</p>` : `<p class="formula graph-answer">a = (v<sub>B</sub> − v<sub>A</sub>) ÷ (t<sub>B</sub> − t<sub>A</sub>) = ${n(slope)} m/s²</p>`}<div class="button-row">${button('重新选点','reset-graph','ghost')}</div><p class="small muted">青色点为学生填写的速度，蓝色点为系统按本轮纸带计算的速度；窄屏可左右滑动图像。</p></div>`;
+  return `<section class="card"><p class="eyebrow">03 / ACCELERATION</p><h2>计算加速度</h2><p class="muted">可用逐差法自行计算，也可在 v–t 图像上选两点自动求斜率。</p><div class="segmented" role="group" aria-label="加速度计算方法"><button type="button" data-action="method-difference" aria-pressed="${difference}">逐差法</button><button type="button" data-action="method-graph" aria-pressed="${!difference}">v–t 图像法</button></div>${difference ? `<div class="method-panel"><p class="formula">本轮有 5 段等时间隔位移：a ≈ [(s₃−s₁)+(s₄−s₂)+(s₅−s₃)] ÷ (6ΔT²)。请将 s 的 cm 换算为 m，ΔT = ${n(countIntervalSeconds())} s。</p><p class="muted small">该公式使用跨 2 段的三组逐差，适用于当前 5 段纸带。</p><div class="button-row"><label class="field-label" for="acceleration-input">你的加速度 / m·s⁻²</label><input id="acceleration-input" class="number-input" style="max-width:210px" type="text" inputmode="decimal" autocomplete="off" placeholder="自行计算" value="${e(round.accelerationDraft)}"></div></div>` : graphPanel}<div class="button-row">${button('返回修改速度','return-speed','ghost')}${button('返回修改累计距离','return-measure','ghost')}${button('提交实验结果 →','submit')}</div></section>`;
+}
+
+function renderAnalysis() {
+  const phase = round.phase;
+  const stageLabel = phase === 'measure' ? '累计距离测量' : phase === 'speed' ? '瞬时速度计算' : '加速度计算';
+  return `<ol class="stepper"><li class="done">01 开始实验</li><li class="done">02 装置操作</li><li class="active">03 ${stageLabel}</li><li>04 结果反馈</li></ol><section class="card"><div class="section-heading"><div><p class="eyebrow">STATUS / 纸带已生成</p><h2>小车已释放，开始分析纸带</h2><p class="muted small">电源已接通 · 小车已释放 · ${makeDots(round.motion).length} 个计时点已生成（含计数点）</p></div><span class="status-pill">${stageLabel}</span></div></section>${renderTape()}${phase === 'measure' ? renderMeasure() : phase === 'speed' ? renderSpeed() : renderAcceleration()}`;
+}
+
+function renderResults() {
+  const result = resultsFor(round);
+  if (!result) return '<section class="card"><p>结果数据不完整，请重新开始实验。</p></section>';
+  const { data, referenceCm, measurementErrorsCm, velocityErrorsMps } = result;
+  const f = formatNumber;
+  const a = round.motion.accelerationMps2;
+  const good = Math.abs(result.processingErrorMps2) <= CONFIG.accelerationToleranceMps2;
+  const maxReadingError = Math.max(...measurementErrorsCm.map(Math.abs));
+  const speedWrong = velocityErrorsMps.filter(v => v !== null && Math.abs(v) > CONFIG.speedToleranceMps).length;
+  const readingNote = maxReadingError < 0.005 ? '累计距离与纸带参考位置一致。' : `累计距离最大读数偏差为 ${f(maxReadingError)} cm；读数偏差会传递到位移、速度和加速度。`;
+  const speedNote = speedWrong === 0 ? '两个手动速度与已确认读数对应的结果一致。' : `有 ${speedWrong} 个手动速度与已确认读数不符，请检查 0.10 s 计数点间隔及 cm→m 换算。`;
+  const processingNote = good ? '加速度结果与本轮读数推得的值接近。' : round.accelerationMethod === 'graph' ? `图像选点斜率与纯读数参考斜率相差 ${f(Math.abs(result.processingErrorMps2))} m/s²；请检查手动计算的速度。` : `你的加速度与读数推得的值相差 ${f(Math.abs(result.processingErrorMps2))} m/s²；请检查逐差公式和单位换算。`;
+  const unitsHint = Math.abs(result.studentAcceleration / result.measuredAcceleration - 100) < 10 || Math.abs(result.studentAcceleration / result.measuredAcceleration - .01) < .005 ? '结果接近 100 倍或 1/100 倍关系，请重点核对 cm 与 m 的换算。' : '';
+  const rows = data.distancesCm.map((value, i) => `<tr><td>${i}</td><td>${f(i*countIntervalSeconds())}</td><td>${f(value)}</td><td>${f(referenceCm[i])}</td><td>${f(measurementErrorsCm[i])}</td></tr>`).join('');
+  const velocityRows = data.velocitiesMps.map((value, j) => {
+    const index = j + 1;
+    const manual = CONFIG.manualVelocityIndices.includes(index);
+    return `<tr><td>${index}</td><td>${f(index*countIntervalSeconds())}</td><td>${manual ? '学生填写' : '系统计算'}</td><td>${f(result.analysisVelocitiesMps[j])}</td><td>(${f(data.distancesCm[j+2])} − ${f(data.distancesCm[j])}) ÷ 100 ÷ ${f(2*countIntervalSeconds())} = ${f(value)}</td><td>${manual ? f(velocityErrorsMps[j]) : '—'}</td></tr>`;
+  }).join('');
+  const method = round.accelerationMethod === 'difference' ? '逐差法' : 'v–t 图像法';
+  const formula = round.accelerationMethod === 'difference'
+    ? `a = [(${f(data.displacementsCm[2])}−${f(data.displacementsCm[0])})+(${f(data.displacementsCm[3])}−${f(data.displacementsCm[1])})+(${f(data.displacementsCm[4])}−${f(data.displacementsCm[2])})] ÷ 100 ÷ (6×${f(countIntervalSeconds())}²) = ${f(result.measuredAcceleration)} m/s²`
+    : `a = (${f(result.analysisVelocitiesMps[round.graphSelection[1]-1])}−${f(result.analysisVelocitiesMps[round.graphSelection[0]-1])}) ÷ (${f(round.graphSelection[1]*countIntervalSeconds())}−${f(round.graphSelection[0]*countIntervalSeconds())}) = ${f(result.studentAcceleration)} m/s²`;
+  const graphCoordinates = round.accelerationMethod === 'graph' ? `<p class="small muted">选点 A：t = ${f(round.graphSelection[0]*countIntervalSeconds())} s，v = ${f(result.analysisVelocitiesMps[round.graphSelection[0]-1])} m/s；选点 B：t = ${f(round.graphSelection[1]*countIntervalSeconds())} s，v = ${f(result.analysisVelocitiesMps[round.graphSelection[1]-1])} m/s。</p>` : '';
+  return `<ol class="stepper"><li class="done">01 开始实验</li><li class="done">02 装置操作</li><li class="done">03 纸带分析</li><li class="active">04 结果反馈</li></ol>
+    <section class="card"><p class="eyebrow">LAB REPORT / 实验结果</p><div class="section-heading"><div><h2>本轮纸带分析报告</h2><p class="muted">处理结果来自本轮已确认的纸带读数；两个手动速度仍保留学生的原始输入。</p></div><span class="result-badge ${good && speedWrong === 0 ? '' : 'review'}">${good && speedWrong === 0 ? '计算基本一致' : '建议检查计算'}</span></div>
+      <div class="result-grid"><div class="metric"><span class="label">理论加速度</span><strong>${f(a)} m/s²</strong></div><div class="metric"><span class="label">由纸带读数推得 · ${method}</span><strong>${f(result.measuredAcceleration)} m/s²</strong></div><div class="metric"><span class="label">${round.accelerationMethod === 'graph' ? '图像选点自动计算' : '你的结果'}</span><strong>${f(result.studentAcceleration)} m/s²</strong></div></div>
+      <p class="formula">${formula}<br>结果 − 读数推得值 = ${f(result.processingErrorMps2)} m/s²；读数推得值 − 理论值 = ${f(result.measurementEffectMps2)} m/s²；结果 − 理论值 = ${f(result.totalErrorMps2)} m/s²。</p>${graphCoordinates}</section>
+    <section class="card"><h2>累计距离记录与测量偏差</h2><div class="data-table-wrap"><table class="data-table"><thead><tr><th>计数点</th><th>时刻 / s</th><th>你的读数 / cm</th><th>参考位置 / cm</th><th>读数偏差 / cm</th></tr></thead><tbody>${rows}</tbody></table></div></section>
+    <section class="card"><h2>相邻位移</h2><div class="data-table-wrap"><table class="data-table"><thead><tr>${data.displacementsCm.map((_,i) => `<th>s${i+1}</th>`).join('')}</tr></thead><tbody><tr>${data.displacementsCm.map((v,i) => `<td>${f(data.distancesCm[i+1])}−${f(data.distancesCm[i])} = ${f(v)} cm</td>`).join('')}</tr></tbody></table></div><p class="small muted">由相邻两个已确认的累计距离作差：sᵢ = xᵢ − xᵢ₋₁。</p></section>
+    <section class="card"><h2>瞬时速度</h2><div class="data-table-wrap"><table class="data-table"><thead><tr><th>计数点</th><th>时刻 / s</th><th>来源</th><th>速度 / m·s⁻¹</th><th>纸带读数代入（cm→m） / m·s⁻¹</th><th>学生计算偏差 / m·s⁻¹</th></tr></thead><tbody>${velocityRows}</tbody></table></div><p class="small muted">内部计数点：vᵢ ≈ (xᵢ₊₁ − xᵢ₋₁) / (2ΔT)，ΔT = ${f(countIntervalSeconds())} s。</p></section>
+    <section class="card"><h2>误差分析与改进</h2><ul class="note-list"><li>${readingNote}</li><li>${speedNote}</li><li>${processingNote}</li><li>本轮读数造成的加速度差异为 ${f(result.measurementEffectMps2)} m/s²；可放大刻度后复测，并在计算中保留足够有效数字。</li>${unitsHint ? `<li>${unitsHint}</li>` : ''}</ul><div class="button-row">${button('返回修订计算','edit-results','ghost')}${button('重新开始实验','request-reset','secondary')}</div></section>`;
+}
+
+function render(scrollToSelected = false) {
+  const oldScroll = app.querySelector('.tape-scroll')?.scrollLeft ?? 0;
+  const oldGraphScroll = app.querySelector('.graph-scroll')?.scrollLeft ?? 0;
+  app.innerHTML = round.stage === 'home' ? renderHome() : round.stage === 'setup' ? renderSetup() : round.stage === 'results' ? renderResults() : renderAnalysis();
+  resetTop.hidden = round.stage === 'home';
+  const tape = app.querySelector('.tape-scroll');
+  if (tape) {
+    tape.scrollLeft = oldScroll;
+    if (scrollToSelected) {
+      const x = 74 + referenceDistancesCm(round)[round.selectedIndex] * CONFIG.tapePixelsPerCm;
+      tape.scrollLeft = Math.max(0, x - tape.clientWidth / 2);
+    }
+  }
+  const zoom = app.querySelector('.zoom-scroll');
+  if (zoom) zoom.scrollLeft = Math.max(0, Number(zoom.dataset.dotX) - zoom.clientWidth / 2);
+  const graph = app.querySelector('.graph-scroll');
+  if (graph) graph.scrollLeft = oldGraphScroll;
+}
+
+app.addEventListener('click', event => {
+  const target = event.target.closest('[data-action]');
+  if (!target) return;
+  const action = target.dataset.action;
+  const index = Number(target.dataset.index);
+  if (action === 'graph-point') return dispatch({ type:'SELECT_GRAPH_POINT', index });
+  if (action === 'graph-plot') {
+    const graph = target.closest('svg');
+    const bounds = graph.getBoundingClientRect();
+    const graphX = (event.clientX - bounds.left) * 580 / bounds.width;
+    const nearest = Math.min(CONFIG.countIntervals - 1, Math.max(1, Math.round((graphX - 70) / 140) + 1));
+    return dispatch({ type:'SELECT_GRAPH_POINT', index:nearest });
+  }
+  if (action === 'select-point' && index === 0) return;
+  if (action === 'request-reset') return resetDialog.showModal();
+  const mapping = {
+    start: { type:'START' }, power: { type:'POWER_ON' }, release: { type:'RELEASE' },
+    'toggle-timed': { type:'TOGGLE_TIMED' }, 'select-point': { type:'SELECT_POINT', index },
+    'check-reading': { type:'CHECK_READING' }, 'save-reading': { type:'SAVE_READING' },
+    'clear-reading': { type:'CLEAR_READING', index:round.selectedIndex },
+    'calculate-displacements': { type:'CALCULATE_DISPLACEMENTS' },
+    'mode-cumulative': { type:'SET_TAPE_MODE', mode:'cumulative' },
+    'mode-displacement': { type:'SET_TAPE_MODE', mode:'displacement' },
+    'return-measure': { type:'RETURN_MEASURE' }, 'return-speed': { type:'RETURN_SPEED' },
+    'to-acceleration': { type:'TO_ACCELERATION' },
+    'method-difference': { type:'SET_METHOD', method:'difference' },
+    'method-graph': { type:'SET_METHOD', method:'graph' },
+    'reset-graph': { type:'RESET_GRAPH_POINTS' },
+    submit: { type:'SUBMIT' }, 'edit-results': { type:'EDIT_RESULTS' },
+  };
+  if (mapping[action]) dispatch(mapping[action], action === 'select-point');
+});
+
+app.addEventListener('keydown', event => {
+  const target = event.target.closest('svg [data-action="select-point"], svg [data-action="graph-point"]');
+  if (target && (event.key === 'Enter' || event.key === ' ')) { event.preventDefault(); target.dispatchEvent(new MouseEvent('click', { bubbles:true })); }
+});
+
+app.addEventListener('input', event => {
+  const target = event.target;
+  if (target.id === 'reading-input') {
+    try {
+      round = reduceRound(round, { type:'DRAFT_READING', raw:target.value });
+      persist();
+      const feedback = document.querySelector('#reading-feedback');
+      feedback.textContent = '待检查：请核对刻度后点击“检查读数”。';
+      feedback.className = 'feedback';
+      const save = app.querySelector('[data-action="save-reading"]');
+      if (save) save.disabled = true;
+    } catch (error) { flash(error.message); }
+  } else if (target.dataset.speedIndex) {
+    try { round = reduceRound(round, { type:'DRAFT_SPEED', index:Number(target.dataset.speedIndex), raw:target.value }); persist(); }
+    catch (error) { flash(error.message); }
+  } else if (target.id === 'acceleration-input') {
+    try { round = reduceRound(round, { type:'DRAFT_ACCELERATION', raw:target.value }); persist(); }
+    catch (error) { flash(error.message); }
+  }
+});
+
+resetTop.addEventListener('click', () => resetDialog.showModal());
+document.querySelector('#cancel-reset').addEventListener('click', () => resetDialog.close());
+document.querySelector('#confirm-reset').addEventListener('click', () => {
+  round = createRound(Math.random, CONFIG, round.motion.initialVelocityMps);
+  persist();
+  resetDialog.close();
+  render();
+  window.scrollTo({ top:0, behavior:'smooth' });
+  flash('已开启新一轮实验。');
+});
+
+persist();
+render();
+})();
+  </script>
+</body>
+</html>
