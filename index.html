@@ -19,7 +19,9 @@
 .source-tag{display:inline-block;border:1px solid #4c778f;border-radius:100px;padding:4px 8px;font-size:11px;font-weight:800;white-space:nowrap}.source-tag.student{color:var(--cyan);background:#154355}.source-tag.automatic{color:#afd0ff;background:#203651}.auto-value{color:#c9e8ff;font-variant-numeric:tabular-nums}.graph-svg{cursor:crosshair;touch-action:pan-x}.selected-points{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.selected-point{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;padding:12px;border:1px solid #5d8297;border-radius:10px;background:#102c42;font-size:13px}.selected-point strong{color:var(--cyan)}.selected-point.empty{color:var(--muted);border-style:dashed}.graph-answer{margin-top:12px}
 @media(max-width:760px){.main-shell{padding:20px 14px 40px}.header-inner{padding:14px}.hero,.operation-layout,.measure-layout{grid-template-columns:1fr}.hero{gap:0}.hero-art{min-height:170px;order:-1}.hero-art svg{max-width:290px}.card{padding:19px;margin-bottom:13px}.tape-card{padding:18px 0}.tape-card>.section-heading,.tape-card>.tape-caption,.tape-card>.button-row{padding-left:18px;padding-right:18px}.tape-help{padding:0 18px}.point-grid{gap:5px}.point-button{font-size:13px}.point-button small{font-size:10px}.result-grid,.selected-points{grid-template-columns:1fr}.text-button{font-size:12px}.brand-mark{width:40px;height:40px}.brand-copy>p:last-child{font-size:11px}.button-row .button{flex:1 1 auto}.pair-row select{flex:1}}
 @media(max-width:390px){.point-button{font-size:12px}.point-button small{font-size:9px}.brand-copy h1{font-size:17px}.brand-mark{display:none}}
+
   </style>
+
 </head>
 <body>
   <header class="site-header">
@@ -37,8 +39,8 @@
     <div class="button-row"><button id="cancel-reset" class="button ghost" type="button">继续当前实验</button><button id="confirm-reset" class="button danger" type="button">确认重新开始</button></div>
   </dialog>
   <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
-  <script>
-(function(){
+<script>
+(() => {
 'use strict';
 const CONFIG = Object.freeze({
   storageKey: 'ticker-tape-lab-v1',
@@ -68,6 +70,7 @@ function formatNumber(value) {
   const fixed = Number(value).toFixed(2);
   return Number(fixed) === 0 ? '0.00' : fixed;
 }
+
 
 const round2 = n => Math.round((n + Number.EPSILON) * 100) / 100;
 const validReading = raw => typeof raw === 'string' && /^\d+\.\d{2}$/.test(raw);
@@ -332,11 +335,15 @@ function restoreRound(raw, config = CONFIG) {
   } catch { return null; }
 }
 
+
 const app = document.querySelector('#app');
 const resetTop = document.querySelector('#reset-top');
 const resetDialog = document.querySelector('#reset-dialog');
 const toast = document.querySelector('#toast');
-let round = restoreRound(localStorage.getItem(CONFIG.storageKey)) ?? createRound();
+let savedRound = null;
+let storageAvailable = true;
+try { savedRound = localStorage.getItem(CONFIG.storageKey); } catch { storageAvailable = false; }
+let round = restoreRound(savedRound) ?? createRound();
 let toastTimer;
 
 const e = value => String(value ?? '').replace(/[&<>"']/g, char => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' })[char]);
@@ -345,7 +352,10 @@ const n = (value, digits = 2) => {
   const fixed = Number(value).toFixed(digits);
   return Number(fixed) === 0 ? (0).toFixed(digits) : fixed;
 };
-const persist = () => localStorage.setItem(CONFIG.storageKey, JSON.stringify(round));
+const persist = () => {
+  try { localStorage.setItem(CONFIG.storageKey, JSON.stringify(round)); }
+  catch { storageAvailable = false; }
+};
 const disabled = condition => condition ? 'disabled' : '';
 const button = (label, action, style = 'primary', extra = '') => `<button class="button ${style}" type="button" data-action="${action}" ${extra}>${label}</button>`;
 
@@ -524,6 +534,9 @@ function renderResults() {
 }
 
 function render(scrollToSelected = false) {
+  document.querySelector('.site-footer').textContent = storageAvailable
+    ? '纸带数据仅保存在本机浏览器中 · 50 Hz 交流电源模拟'
+    : '浏览器未允许本地存储，本轮数据仅在当前页面保留 · 50 Hz 交流电源模拟';
   const oldScroll = app.querySelector('.tape-scroll')?.scrollLeft ?? 0;
   const oldGraphScroll = app.querySelector('.graph-scroll')?.scrollLeft ?? 0;
   app.innerHTML = round.stage === 'home' ? renderHome() : round.stage === 'setup' ? renderSetup() : round.stage === 'results' ? renderResults() : renderAnalysis();
@@ -614,7 +627,8 @@ document.querySelector('#confirm-reset').addEventListener('click', () => {
 
 persist();
 render();
+
 })();
-  </script>
+</script>
 </body>
 </html>
